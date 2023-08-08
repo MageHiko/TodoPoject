@@ -1,0 +1,25 @@
+{% extend 'base.html' %}
+
+{% block title %}Works{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1> Films </h1>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for work in works %}
+        <div class="col">
+          <div class="card">
+            {% if work.poster%}
+            <img src="{{work.poster.url}}" width="10" height="200" class="card-img-top" alt="{{ work.name }}">
+            {% else %}
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title"> <a href="{% url 'my_works' work.id %}"> {{ work.name }} </a> </h5>
+              <p class="card-text"> {{ work.day }} </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+</div>
+{% endblock %}
